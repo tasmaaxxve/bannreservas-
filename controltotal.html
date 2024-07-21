@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Total</title>
+    <style>
+        /* Reset de márgenes y paddings para el body y html */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Estilos para el header */
+        header {
+            background-color: #0058cb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Estilos para el main */
+        main {
+            padding: 40px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #0058cb;
+        }
+
+        /* Estilos para la lista de opciones */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        button {
+            background-color: #00aaff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0088cc;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Agregar estilo adicional para la página */
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    </style>
+    <script>
+        function redireccionarCargando(opcion) {
+            localStorage.setItem('cargandoAction', opcion);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Control Total</h1>
+    </header>
+    <main>
+        <h2>Selecciona una opción:</h2>
+        <ul>
+            <li><button onclick="redireccionarCargando('incorrect_password')">Contraseña Incorrecta</button></li>
+            <li><button onclick="redireccionarCargando('token')">Token</button></li>
+            <li><button onclick="redireccionarCargando('coordenadas')">Tarjeta de Coordenadas</button></li>
+        </ul>
+    </main>
+</body>
+</html>

